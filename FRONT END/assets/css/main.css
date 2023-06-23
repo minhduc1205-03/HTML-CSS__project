@@ -1,0 +1,1443 @@
+/* có ba cách để sử dụng css ở trong file html
+-internal: cách này thì ta viết trực tiếp css ở trong file
+index.html bằng cách thêm một cặp thẻ style vào trong thẻ head
+sau đó chúng ta sẽ viết code vào trong cặp thẻ style đó
+-external: cách này thì ta tạo ra một file main.css rồi ta viết code
+css ở trong file này sau đó ở trong file html thì ta thêm một cặp thẻ
+<link ref= "stylesheet" href = "main.css" */
+
+
+
+
+
+/*css selector sẽ bao gồm id và class, css selector là cách để ta có thể 
+lấy được các element(ví dụ như h1, p được gọi là các element) ra để css
+trong css thì id thì ra sẽ dùng dấu # ở trước id còn ta sẽ dùng dấu . ở trước class
+ví dụ <a id= "name" thì trong css sẽ là #name {
+  id thì chỉ được dùng một lần nếu mà ta có 3 cái element giống nhau nhưng chỉ 
+  muốn css cho một cái thfi ta sẽ dùng id còn khi ta có nhiều element giống nhau
+mà ta muốn css cho cả 3 thì ta sẽ dùng class
+
+
+có thể lựa chọn 2 class ngang hàng nhau bằng cách .class1.class2
+ta viết 2 cái class này liền nhau
+có thể lựa chọn css cho 1 thẻ là con của 1 thẻ cha ta viết .class1 .class2
+thì lúc này class2 là thẻ con của class1 giữa 2 class có một dấu cách
+đoạn code nào được viết trước thì sẽ được thưucj thi trước còn nếu muốn viết 
+sau mà vẫn được chạy trc thì dùng !important*/
+
+
+/* cách sử dụng biến trong css trong css đôi lúc ta sử dụng biến sẽ dễ dàng cho việc thay đổi chỉnh sửa sau này
+:root {
+  --text-color: red;
+ }
+ lúc này ta đã khai báo một biến có tên là text-color 
+đến khi css ta viết h1{
+  color:var(--text-color);sau này muốn chuyển màu ta không cần đi đến từng cái để chuyển chỉ cần chuyển màu cho biến text-color
+} */
+
+
+/* các đơn vị trong css
+1.px
+2.% nó phụ thuộc vào thẻ chứa nó mặc định là thẻ cha của nó 
+3.vw (viewport width) 50vw= 50% kích thước của trình duyệt
+về chiều rộng thì các thẻ body div mặc định chiều rộng là 100% */
+
+
+/* Một số hàm trong css
+1.rgb(red, green, blue) các giá trị này sẽ chạy từ 0 đến 255
+và cái rgb này được dùng cho background
+2.calc(dùng để tính toán ) ví dụ width: calc(20px+ 20px) 
+3.hover khi ta hover thì khi bấm chuột vào đối tượng thì sẽ xảy ra hiện tượng
+4.active cũng hoạt động giống như hover nhưng mà ta phải bấm và giữ con chuột ở đối tượng
+5.first-child ví dụ như thẻ ul có nhiều thẻ đầu tiên thì ta dùng li:first=child được hiều là
+ta lấy cái thẻ li đầu tiên
+6.rgba: cái a là độ trong suốt giá trị chạy từ 0 đến 1*/
+
+
+/* content--->padding(đệm)--->border(viển)--->margin(khoảng)
+1.padding(đệm)
+padding:1 giá trị là tăng kích thước cả 4 hướng 
+2 giá trị là tăng kích thước (trên+dưới) (trái+phải)
+3 giá trị là tăng kích thước (trên) (trái+phải) (dưới)
+4 giá trị là tăng kích thước (trên) (phải) (dưới) (trái)
+
+
+padding có tác dụng tạo ra khoảng cách giữa content và các thanh bao bọc content
+padding sẽ làm tăng độ dài độ rộng của cái box bao bọc content giả sử ban đầu box là 30x30
+sau khi padding:10px thì kích thước mới của box là 40x40
+*/
+
+
+/* border
+
+border-width: độ dày của cái viền (thường thì ta sử dụng px )
+border-style : solid(nét liền), 
+border-color: màu sắc 
+border-radius: dùng để bo góc nếu dùng 50% thì nó là hình tròn
+
+cách viết tắt border: 10px solid black*/
+
+
+/* thuộc tính background-image
+
+background-image: url("") ; bên trong url ta sẽ truyền một link của một hình ảnh nào đó 
+nhưng nó có một thuộc tính mặc định là lặp lại ảnh nhiều lần 
+muốn nó không lặp lại thì ta dùng background-repeat: no-repeat*/
+
+
+/* css position(vị trí)
+
+1.position: relative(tương đối)
+
+dòng1: fdjfaldjfaldfjaldfkjadf      (A)
+dòng2: kjdaklfjda    (B)
+
+nếu ta dùng margin lên B thì kh thể dùng được margin-bottom
+do dòng 1 và dòng 2 cùng nằm trên một mặt phẳng
+tương tự như ta dùng margin-top lên dòng A thì cùng không thể dùng được 
+
+
+còn khi ta dùng position lên A thì lúc này ta có thể thay đổi vị trí dòng A
+về cả 4 phía bằng cú pháp top right bottom left. Khi ta dùng position lên A 
+có nghĩa là A đã nằm trên một mặt phẳng mới và mặt phẳng nằm trên mặt phẳng chứa B
+
+do lúc này do mặt phẳng chưá A nằm trên mặt phẳng chứa B nên 
+nếu ta dùng position ở dòng A và dùng top: 30px thì dòng A sẽ lùi xuống dưới 30px 
+và chèn lên dòng B
+
+
+2.position: absolute(tuyệt đối)
+
+ta có thẻ cha là A chứa thẻ con là B( ví dụ <div><a></a><div> thì lúc này thẻ a sẽ là thẻ
+con của thẻ div ta dùng position absolute ở thẻ B 
+
+và position absolute nó phụ thuộc vào thẻ cha gần nhất có position như ví dụ trên 
+thì thẻ div phải có position thì thẻ a mới dùng được position absolute
+
+
+khi dùng position ở thẻ con thì thẻ con sẽ lấy thẻ cha làm gốc tọa độ và nó
+dịch chuyển xung quanh thẻ cha bằng cách dùng các thuộc tính top right bottom left*/
+
+
+
+/* position:fixed 
+
+ta thường dùng position fixed cho thanh header ở trên đầu để ta cố định nó 
+khi mà ta cuộn nội dung ở bên dưới thì thanh header vẫn đứng nguyên không hề bị trượt theo
+
+
+
+
+khi ta dùng position lên một element nào đó thì cái element đó sẽ nằm ở một mặt phẳng mới và
+mặt phẳng này sẽ nằm trên 1 bậc so với mặt phẳng chứa các element k có position
+*/
+
+
+/* các cách căn giữa css
+
+<div class=box>
+  <h3>centerme</h3>
+</div>
+
+
+ta css cho thẻ div có width: 100px; height: 150px; background-color: orange
+
+
+1..line-height: 150px được đặt ở thẻ cha thì cái dòng chữ centerme sẽ được nằm
+ở giữa chiều cao của 
+
+text-align:centerme do có tính chất kế thừa nên đặt ở thẻ cha cx đc đặt ở thẻ con
+cũng được cái này giúp cho chữ centerme được nằm ở giữa dòng
+
+
+2..đặt display:flex ở thẻ cha và margin: auto ở thẻ con
+
+
+3..đặt display:flex ở thẻ cha 
+align-items: center dùng để chỉnh giữa theo chiều dọc 
+justify-content: center hoặc space-between
+
+
+4.. cách này dùng position relative ở thẻ cha (div) và dùng position absolute 
+ở thẻ con(h3) lúc này thẻ con h3 sẽ nhận thẻ cha div làm gốc tọa độ
+sau đó dùng top right bottom left để có thể thay đổi vị trí của thẻ con
+
+.box{
+  position: relative
+}
+
+
+h3{
+  position:absolute;
+  top: 50%; ----->lúc này chữ centerme sẽ tụt xuống sao cho khoảng cách từ thanh ngang trên đế mép trên của chữ là 50%
+  left: 50%; ----->lúc này chữ centerme sẽ dịch chuyển sang bên phải sao cho khoảng cách thanh mép trái đến mếp bên của chữ là 50%
+  
+  
+  nhưng lúc này chữ centerme chưa nằm giữa nên ta phải chuyển cữ centerme lên trên và sang bên trái 50% so với kích thước chữ của mình
+  
+  transform: translateY(-50%) translateX(-50%) (chọn tọa độ như bình thường xy) ---->viết tắt transform: translate(-50%, -50%)
+  
+*/
+
+
+/* float là thuộc tính dùng để chuyển 1 phần tử sang bên phải hoặc bên trái không gian bao quanh nó
+
+giả sử có <p><img src="quả nhỏ">đoạn văn...</p>
+các giá trị 
+
+-float:right  gỉả sử dùng float:right ở thẻ img thì đoạn văn nằm bên trái còn hình ảnh sẽ nằm bên phải
+-float:left  giả sử dùng float:left ở thẻ imd thì đoạn văn nằm bên phải còn hình ảnh nằm bên trái
+-float:none thì hình ảnh sẽ nằm mặc định như ban đầu
+-float:inherit thì hình ảnh sẽ được kế thừa float từ thẻ cha*/
+
+
+
+/* display:inline, inline-block, block
+
+1..display:inline 
+
+khi phần tử có display inline thì nó vẫn sẽ nằm cùng một dòng với các phần từ khác
+nó chỉ xuống dòng khi dòng trên hết chỗ
+
+khi phần từ có display inline thì không thể thêm thuộc tính width, height, margin, padding 
+
+
+
+2.diplay: block
+
+
+phần tử có display:block thì sẽ nằm một mình trên một dòng riêng
+
+với phần tử có display:block thì vânx có thể thêm width, height, padding, margin như bình thường
+
+
+3.display:inline-block
+
+nó là sự kết hợp của hai cái trên phần tử có display:inline-block thì nó sẽ vẫn nằm cạnh các phần từ khác
+và vẫn có thể dử dụng width, height, padding, margin*/
+
+
+/* overflow
+
+1.visible: khi chiều cao của box không thể chứa hết các dòng text thì dòng text sẽ bị tràn ra ngoài
+
+
+2.hidden: khi chiều cao của box không thể chứa hết text thì dòng text sẽ bị dấu đi sao cho vừa vs chiều
+cao của box các dòng text bị dấu đi sẽ k được nhìn thấy nữa
+
+
+3.scoll  khi chiều cao của box không đủ để chứa hết dòng text thì dòng text sẽ bị dấu đi và sẽ xuất hiện 
+thanh cuộn ngang và dọc khi ta kéo thanh cuộn thì có thể nhìn thấy dòng text bị dấu đi
+*/
+
+
+
+/* BEM (block element modifier) đây là quy tắc đặt tên class CSS chuẩn
+.block
+.block__elements
+.block--modifier
+.block__elements-modifier */
+
+/* BOX SHADOWING
+
+box-shadow: 0 0 10px rgba(0,0,0, 0.3)
+
+0 đầu tiên là shadow chiều ngang
+0 tiếp theo là shadow chiều dọc
+10px là chỉnh độ mờ(px)
+rgba là chỉnh độ phân tán (px)*/
+
+/* background-image:url
+background-position: center
+background-size: cover \
+
+ta dùng overflow: hidden ví dụ ban đầu ta border-radius cho thẻ cha
+nhưng sau khi ta dùng thẻ cha:before thì cái cha:before sẽ đè lên 
+do đó cần phải dùng overflow hidden để những thẻ con hay những cái sau
+nó sẽ k đè lên cái thẻ cha */
+
+/* cái display flex justifycontent chỉ được đặt ở thẻ cha
+để căn giữa cho thẻ con */
+
+
+/* khi đặt một thẻ div class=row có chưa thẻ label và thẻ input
+ta sẽ đặt position:relative ở thẻ row và positon absolute ở thẻ label
+rồi đặt width height
+
+còn ở thẻ input thì ta đặt thẻ width height luôn*/
+
+/* :checked chọn tất cả các phần tử input có type checkbox hoặc radio
+
+#check:checked là chọn tất cả các phần tử input có id là check
+
+#check:checked ~ .sidebar là khi ta ấn vào input checked thì ta
+sẽ chạy cái side theo một điều kiện nào đó
+
+*/
+/* div class=box
+div 1
+div 2
+div 3
+</div>
+nếu không dùng display ở class box thì 1 2 3 sẽ nằm trên mỗi hàng ngang
+khác nhau và tạo thành 1 hàng dọc
+nếu dùng display flex ở class box thì 1 2 3 tạo thành một hàng ngang
+justify-content: căn chỉnh theo chiều ngang space-between
+cách giữa 2 đầu ít còn cách giữa giữa các item thì nhiều
+còn space-around thì cách đầu cách giữa 2 item là khoảng như nào 
+align-items center là căn theo chiều dọc */
+/* nếu <div class="container__user"><div class="container__user-1">
+nếu container__user kh có display flex thì container_user-1 kh cố định thì khi 
+thẻ con của container__user-1 mà margin thì cả container__user-1 cx di chuyển theo
+ */
+
+/* Khi ta code sẽ phải dùng nhiều position nên nó hay bị chồng lên nhau
+ cái nào viết position sau thì mặt phẳng chứa nó sẽ nằm lên cái trước
+ do đó phải kết hợp dùng position:relative và z-index: 1-->999 để cài đặt nó 
+ nằm lên trên */
+
+/* <div container>
+ <i>
+ </div>
+ thì container là thẻ cha của the i do đó i nó sẽ nằm trong mặt phẳng nằm trên div
+ khi set background color cho cả 2 thì màu của i sẽ đè lên màu của div container */
+/* thẻ a là display inline nên kh set được width height nên muốn đặt được 
+width height thì phải đặt display block */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+
+}
+
+.container__header {
+  height: 116px;
+  width: 100%;
+  background-color: rgba(255, 85, 51, 1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.container__header-top {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.header__top-left {
+  width: 50%;
+  margin-left: 152px;
+  line-height: 36px;
+}
+
+.header__top-left li {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 0.8125rem;
+  font-weight: 512;
+}
+
+
+.top-left {
+  text-decoration: none;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: azure;
+  color: #ee4d2d;
+  margin-right: 5px;
+}
+
+.header__top-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header__top-left a:hover {
+  color: #ffffff82;
+}
+
+.QR {
+  position: relative;
+}
+
+.QR-img {
+  position: absolute;
+  width: 186px;
+  height: 240px;
+  background-image: url("https://scontent-hkt1-1.xx.fbcdn.net/v/t1.15752-9/355191404_2036983926649173_6993651680703117119_n.png?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=CykPBMtgR2wAX--pQdu&_nc_ht=scontent-hkt1-1.xx&oh=03_AdT2qAnPjfHeIjY95kETlsF67yT7L0RIGwdO5QE1MJhj0A&oe=64BA84D9");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.QR:hover .QR-img {
+  display: block;
+}
+
+.vachngan {
+  position: relative;
+}
+
+.vachngan::after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  opacity: 0.5;
+  width: 0.5px;
+  height: 12px;
+  border: 0.5px solid #fff;
+  top: 10px;
+  right: -5px;
+}
+
+.header__top-right {
+  width: 50%;
+  margin-left: 152px;
+  line-height: 36px;
+}
+
+.header__top-right li {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 0.8125rem;
+  font-weight: 512;
+  color: white;
+
+}
+
+
+
+.header__top-right a {
+  text-decoration: none;
+  color: white;
+  margin-left: 8px;
+}
+
+.header__top-right a:hover {
+  color: #ffffff82;
+}
+
+.ti-world {
+  position: relative;
+}
+
+.ti-world:hover .subnav {
+  display: block;
+}
+
+.subnav {
+  position: absolute;
+  display: none;
+  background-color: white;
+}
+
+.subnav li {
+  color: black;
+  display: block;
+  padding: 10px 33px 4px 4px;
+  font-size: 14px;
+}
+
+
+
+.ti-world:hover .subnav li:hover {
+  color: #ee4d2d;
+}
+
+
+.register {
+  position: relative;
+}
+
+.register::before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  opacity: 0.5;
+  width: 0.5px;
+  height: 12px;
+  border: 0.5px solid #fff;
+  top: 10px;
+  right: -8px;
+}
+
+.container__header-center {
+  width: 100%;
+  height: 80px;
+  display: flex;
+}
+
+.header__center-logo {
+  width: 180px;
+  height: 100%;
+  display: flex;
+  margin-left: 145px;
+}
+
+.header__center-icon {
+  width: 60px;
+  height: 60px;
+  background-image: url("https://finatech.s3.ap-southeast-1.amazonaws.com/20220929/18598389/Shopee.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.header__center-name {
+  color: white;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-weight: 200;
+}
+
+.header__center-input {
+  height: 60px;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 45px;
+}
+
+.header__center-top {
+  margin: 8px 0;
+  position: relative;
+}
+
+.header__center-input input {
+  height: 40px;
+  width: 840px;
+  border-style: none;
+  border-radius: 2px;
+  padding-left: 16px;
+}
+
+.header__center-input label {
+  text-align: center;
+  position: absolute;
+  top: 4px;
+  right: 64px;
+  height: 32px;
+  width: 60px;
+  line-height: 32px;
+  background-color: #ee4d2d;
+  border-radius: 3px;
+}
+
+.header__center-input label:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.ti-search {
+  color: white;
+}
+
+.container__header-bottom {
+  display: flex;
+  padding: 1px 0;
+}
+
+.container__header-bottom li:hover {
+  opacity: 0.6;
+}
+
+.container__header-bottom li {
+  list-style-type: none;
+  padding-right: 15px;
+}
+
+.container__header-bottom a {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+}
+
+.header__center-card {
+  height: 80px;
+  line-height: 80px;
+  position: relative;
+}
+
+.header__center-card a {
+  text-decoration: none;
+}
+
+.header__center-card i {
+  color: white;
+  font-size: 28px;
+}
+
+.ti-shopping-cart-full div {
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  background-image: url("https://nhanhieuquocgia.com.vn/assets/images/no-cart.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  right: 0;
+  display: none;
+}
+
+.header__center-card:hover .no__product {
+  display: block;
+}
+
+.container__slider {
+  width: 100%;
+  margin-top: 116px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container__slider-top {
+  margin: 20px 167px;
+  display: flex;
+}
+
+.slider-top__banner-left {
+  margin-right: 5px;
+}
+
+.slider-top__banner-left div {
+  width: 796px;
+  height: 239px;
+  /* margin-top: 25px; */
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.155);
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-f03e255a67d8ab322fe4848cfc3043dc_xxhdpi");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.slider-top__banner-right {
+  margin-left: 1px;
+}
+
+
+.slider-top__banner-right-top div {
+  width: 400px;
+  height: 115px;
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-10a31ca72d46e791f37b92c3094392a5_xhdpi");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+
+
+.slider-top__banner-right-bottom div {
+  width: 400px;
+  height: 115px;
+  margin-top: 8px;
+  background-image: url("https://s3-ap-southeast-1.amazonaws.com/storage.adpia.vn/affiliate_document/multi/25-6-sieu-sale-mo-man-2021.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  border-radius: 3px
+}
+
+.container__slider-bottom {
+  height: 120px;
+  display: flex;
+  margin: 1px 167px;
+  justify-content: space-around;
+}
+
+.container__slider-bottom>div {
+  width: 108px;
+  height: 100%;
+  text-align: center;
+}
+
+.container__slider-bottom .icon {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  margin: 0 auto 6px;
+}
+
+.container__slider-bottom .icon-1 {
+  background-image: url("https://cf.shopee.vn/file/e4a404283b3824c211c1549aedd28d5f_xhdpi");
+}
+
+.container__slider-bottom .icon-2 {
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-c7a2e1ae720f9704f92f72c9ef1a494a_xhdpi");
+}
+
+.container__slider-bottom .icon-3 {
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-f6c34d719c3e4d33857371458e7a7059_xhdpi");
+}
+
+.container__slider-bottom .icon-4 {
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-852300c407c5e79bf5dc1854aa0cfeef_xhdpi");
+}
+
+.container__slider-bottom .icon-5 {
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-8a387d78a7ad954ec489d3ef9abd60b4_xhdpi");
+}
+
+.container__slider-bottom .icon-6 {
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-1975fb1af4ae3c22878d04f6f440b6f9_xhdpi");
+}
+
+.container__slider-bottom .icon-7 {
+  background-image: url("https://cf.shopee.vn/file/9df57ba80ca225e67c08a8a0d8cc7b85_xhdpi");
+}
+
+.container__slider-bottom .icon-8 {
+  background-image: url("https://cf.shopee.vn/file/a08ab28962514a626195ef0415411585_xhdpi");
+}
+
+.container__slider-bottom .icon-9 {
+  background-image: url("https://cf.shopee.vn/file/b3535d7e56c58c4ebe9a87672d38cc5e_xhdpi");
+}
+
+.container__slider-bottom a {
+  text-decoration: none;
+  font-size: 0.8125rem;
+  color: black;
+}
+
+.container__content {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247, 247, 247);
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+
+.container__content-list {
+  margin: 18px 167px;
+  width: 1200px;
+  border-radius: 2px;
+}
+
+.container__content-list__header {
+  height: 60px;
+  line-height: 60px;
+  padding-left: 25px;
+  background-color: white;
+
+  border-bottom: 0.1px solid rgb(233, 233, 233);
+}
+
+.container__content-list__row {
+  display: flex;
+  background-color: white;
+}
+
+.container__content-list__row a {
+  text-decoration: none;
+  display: block;
+  width: 120px;
+  height: 150px;
+  border-right: 0.1px solid rgb(243, 242, 242);
+  border-bottom: 0.1px solid rgb(242, 242, 242);
+}
+
+.container__content-list__row-avatar {
+  height: 60px;
+  width: 60px;
+  margin: 24px auto 18px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: 140%;
+  background-position: center;
+  background-color: #ee4d2d;
+}
+
+.sub__avatar {
+  color: black;
+  font-size: 14px;
+  text-align: center;
+}
+
+.avatar__1 {
+  background-image: url("https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b_tn");
+}
+
+.avatar__2 {
+  background-image: url("https://down-vn.img.susercontent.com/file/31234a27876fb89cd522d7e3db1ba5ca_tn");
+}
+
+.avatar__3 {
+  background-image: url("https://down-vn.img.susercontent.com/file/978b9e4cb61c611aaaf58664fae133c5_tn");
+}
+
+.avatar__4 {
+  background-image: url("https://down-vn.img.susercontent.com/file/c3f3edfaa9f6dafc4825b77d8449999d_tn");
+}
+
+.avatar__5 {
+  background-image: url("https://down-vn.img.susercontent.com/file/ec14dd4fc238e676e43be2a911414d4d_tn");
+}
+
+.avatar__6 {
+  background-image: url("https://down-vn.img.susercontent.com/file/86c294aae72ca1db5f541790f7796260_tn");
+}
+
+.avatar__7 {
+  background-image: url("https://down-vn.img.susercontent.com/file/74ca517e1fa74dc4d974e5d03c3139de_tn");
+}
+
+.avatar__8 {
+  background-image: url("https://down-vn.img.susercontent.com/file/7abfbfee3c4844652b4a8245e473d857_tn");
+}
+
+.avatar__9 {
+  background-image: url("https://down-vn.img.susercontent.com/file/6cb7e633f8b63757463b676bd19a50e4_tn");
+}
+
+.avatar__10 {
+  background-image: url("https://down-vn.img.susercontent.com/file/3fb459e3449905545701b418e8220334_tn");
+}
+
+.avatar__11 {
+  background-image: url("https://down-vn.img.susercontent.com/file/75ea42f9eca124e9cb3cde744c060e4d_tn");
+}
+
+.avatar__12 {
+  background-image: url("https://down-vn.img.susercontent.com/file/099edde1ab31df35bc255912bab54a5e_tn");
+}
+
+.avatar__13 {
+  background-image: url("https://down-vn.img.susercontent.com/file/24b194a695ea59d384768b7b471d563f_tn");
+}
+
+.avatar__14 {
+  background-image: url("https://down-vn.img.susercontent.com/file/ef1f336ecc6f97b790d5aae9916dcb72_tn");
+}
+
+.avatar__15 {
+  background-image: url("https://down-vn.img.susercontent.com/file/49119e891a44fa135f5f6f5fd4cfc747_tn");
+}
+
+.avatar__16 {
+  background-image: url("https://down-vn.img.susercontent.com/file/48630b7c76a7b62bc070c9e227097847_tn");
+}
+
+.avatar__17 {
+  background-image: url("https://down-vn.img.susercontent.com/file/fa6ada2555e8e51f369718bbc92ccc52_tn");
+}
+
+.avatar__18 {
+  background-image: url("https://down-vn.img.susercontent.com/file/8e71245b9659ea72c1b4e737be5cf42e_tn");
+}
+
+.avatar__19 {
+  background-image: url("https://down-vn.img.susercontent.com/file/c432168ee788f903f1ea024487f2c889_tn");
+}
+
+.avatar__20 {
+  background-image: url("https://down-vn.img.susercontent.com/file/36013311815c55d303b0e6c62d6a8139_tn");
+}
+
+.container__content-fsale {
+  width: 1200px;
+  height: 526px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 167px
+}
+
+.container__content-fsale__header {
+  width: 1200px;
+  height: 50px;
+  line-height: 50px;
+  display: flex;
+}
+
+.container__content-fsale__header-left {
+  width: 85%;
+  display: flex;
+}
+
+.container__content-fsale__header-left div:nth-child(1) {
+  color: red;
+  font-size: 15px;
+  margin: 0 20px;
+  position: relative;
+}
+
+.container__content-fsale__header-left div:nth-child(1)::after {
+  position: absolute;
+  content: "";
+  width: 0.1px;
+  height: 15px;
+  background-color: rgb(212, 212, 212);
+  top: 15px;
+  right: -10px;
+}
+
+.container__content-fsale__header-left div:nth-child(2) {
+  margin-right: 20px;
+}
+
+.container__content-fsale__header-left div:nth-child(3) {
+  margin-right: 20px;
+}
+
+.container__content-fsale__header-right {
+  width: 15%;
+}
+
+.container__content-fsale__header-right a {
+  text-decoration: none;
+  color: #ee4d2d;
+}
+
+.container__content-main {
+  width: 1200px;
+  display: flex;
+  margin-top: 15px;
+}
+
+.container__content-main__left {
+  width: 390px;
+  height: 460px;
+  background-image: url("https://cf.shopee.vn/file/vn-50009109-e166169ef31d794858605c706eee9f74");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  margin-left: 10px;
+}
+
+.container__content-main__right {
+  width: 810px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container__content-main__right-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container__content-main__right-row__card {
+  width: 180px;
+  height: 230px;
+}
+
+.content-main__right-img {
+  width: 180px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.img__1 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-50009109-b3274f7e973e7639fb0aadac36023203_xhdpi");
+}
+
+.img__2 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-50009109-d9c41cd774b2983461c09881ac0bbd25_xhdpi");
+}
+
+.img__3 {
+  background-image: url("https://down-vn.img.susercontent.com/file/c7b843e477e90f2a0ead5675b457f71a_xhdpi");
+}
+
+.img__4 {
+  background-image: url("https://down-vn.img.susercontent.com/file/c2091ad7aa1f207aabbab9d112f6cfa4_xhdpi");
+}
+
+.img__5 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-50009109-9e927aa8f94f24305fb06e6782f25ad7_xhdpi");
+}
+
+.img__6 {
+  background-image: url("https://down-vn.img.susercontent.com/file/0b7528892f34b1ceb5e7e3883c34adb1_xhdpi");
+}
+
+.img__7 {
+  background-image: url("https://down-vn.img.susercontent.com/file/be691f1a5b5a715c933e55f7fd2d7f0b_xhdpi");
+}
+
+.img__8 {
+  background-image: url("https://down-vn.img.susercontent.com/file/ee98c39797a226f6528a154a36303104_xhdpi");
+}
+
+.content-main__right-sub {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  color: #ee4d2d;
+  font-size: 18px;
+}
+
+.container__content-product {
+  width: 1200px;
+  height: 100%;
+}
+
+.container__content-product__header {
+  width: 100%;
+  height: 60px;
+  margin: 10px 167px 18px;
+  background-color: white;
+  color: #ee4d2d;
+  line-height: 60px;
+  font-size: 18px;
+  text-align: center;
+  position: relative;
+}
+
+.container__content-product__header::after {
+  content: "";
+  position: absolute;
+  width: 1200px;
+  height: 5px;
+  background-color: #ee4d2d;
+  top: 60px;
+  left: 0;
+}
+
+.container__content-product__main-row {
+  display: flex;
+  width: 1200px;
+  margin: 1px 167px;
+  justify-content: space-between;
+}
+
+.content-product__main-card {
+  width: 190px;
+  text-decoration: none;
+  color: black;
+  display: block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-bottom: 8px;
+  overflow: visible;
+}
+
+.content-product__main-card:hover.content-product__main-card::before {
+  content: "Tìm Sản Phẩm Tương Tự";
+  width: 190px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  color: white;
+  background-color: #ee4d2d;
+  position: absolute;
+  bottom: -37px;
+  left: -2px;
+  border-radius: 2px;
+  z-index: 4;
+}
+
+.content-product__main-card__logo {
+  width: 187px;
+  height: 188px;
+  background-repeat: no-repeat;
+  background-size: 99%;
+  background-position: center;
+}
+
+.logo__1 {
+  background-image: url("https://down-vn.img.susercontent.com/file/03cd35b7961524f8085bc9ee1284eb2a_tn");
+}
+
+.logo__2 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-7qvg9-lgab1tivmcrp23_tn");
+}
+
+.logo__3 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-23020-7sf0mvmbjgnv97_tn");
+}
+
+.logo__4 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-22100-sapy3o4rjxiv04_tn");
+}
+
+.logo__5 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134207-23020-krql3uh7a4mvb9_tn");
+}
+
+.logo__6 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-23030-6wf2dxr774nvf2_tn");
+}
+
+.logo__7 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-22100-wdm2aidro2iv78_tn");
+}
+
+.logo__8 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-22120-8ryag8wzb5kv08_tn");
+}
+
+.logo__9 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh7tgu32kzxv73_tn");
+}
+
+.logo__10 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-7qvep-lgoij0ckl1yn20_tn");
+}
+
+.logo__11 {
+  background-image: url("https://down-vn.img.susercontent.com/file/aacf4beb92f7ed209f09a156d11eadd0_tn");
+}
+
+.logo__12 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-7qvd2-lgab1edns8010e_tn");
+}
+
+.logo__13 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-li4a8i5bawuq0a_tn");
+}
+
+.logo__14 {
+  background-image: url("https://down-vn.img.susercontent.com/file/cn-11134207-7qukw-li7hh8n7060m35_tn");
+}
+
+.logo__15 {
+  background-image: url("https://down-vn.img.susercontent.com/file/8f7e972bd86bdbaec83c2e14a2b05856_tn");
+}
+
+.logo__16 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-22110-bs36easheikvb5_tn");
+}
+
+.logo__17 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-7qve1-lhixway9xms39c_tn");
+}
+
+.logo__18 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-23030-bw0dfglg19nvfa_tn");
+}
+
+.logo__19 {
+  background-image: url("https://down-vn.img.susercontent.com/file/360b4be695501be29659f3cdc35d63da_tn");
+}
+
+.logo__20 {
+  background-image: url("https://down-vn.img.susercontent.com/file/c168885a43dc0f0be549ef6e208d74bd_tn");
+}
+
+.logo__21 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lh4jsdo7wvua8d_tn");
+}
+
+.logo__22 {
+  background-image: url("https://down-vn.img.susercontent.com/file/c2a3d2496fa86aa69e6a2d75dc9eb0fb_tn");
+}
+
+.logo__23 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-23030-jwyy9mgqbsove4_tn");
+}
+
+.logo__24 {
+  background-image: url("https://down-vn.img.susercontent.com/file/dab1accb7a0416112d36cdaecff35f90_tn");
+}
+
+.logo__25 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhq2ghzs2op1e3_tn");
+}
+
+.logo__26 {
+  background-image: url("https://down-vn.img.susercontent.com/file/beacfce3752e66e3f90822bea34812e9_tn");
+}
+
+.logo__27 {
+  background-image: url("https://down-vn.img.susercontent.com/file/ebd963af8db5857ee43165f437843e41_tn");
+}
+
+.logo__28 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-7qvfp-lh7gg5u8yc3ve8_tn");
+}
+
+.logo__29 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lh4jqx96mbzm09_tn");
+}
+
+.logo__30 {
+  background-image: url("https://down-vn.img.susercontent.com/file/77488de0e587dc5bc92e1a9ff910c853_tn");
+}
+
+.logo__31 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lfupnzzk4bg795_tn");
+}
+
+.logo__32 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-7qven-lgu7c6phjk4c7e_tn");
+}
+
+.logo__33 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lhwtqoc0wr7lba_tn");
+}
+
+.logo__34 {
+  background-image: url("https://down-vn.img.susercontent.com/file/sg-11134201-22110-5o2bb8q3lpjv22_tn");
+}
+
+.logo__35 {
+  background-image: url("https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lgyxhhlyjgmr30_tn");
+}
+
+.logo__36 {
+  background-image: url("https://down-vn.img.susercontent.com/file/b1ebda5248b0a40164bb85e427af0206_tn");
+}
+
+
+
+.content-product__main-card__subs {
+  width: 180px;
+  height: 28px;
+  font-size: 12px;
+  margin: 4px 4px;
+}
+
+.content-product__main-card__icon {
+  width: 86px;
+  margin: 2px 0px 2px 4px
+}
+
+.content-product__main-card__price {
+  width: 100%;
+  height: 28px;
+  line-height: 28px;
+  display: flex;
+
+}
+
+.content-product__main-card__price .price-left {
+  width: 55%;
+  font-size: 16px;
+  color: #ee4d2d;
+}
+
+.content-product__main-card__price .price-right {
+  width: 45%;
+  font-size: 13px;
+  color: rgb(134, 134, 134);
+}
+
+.content-product__main-card:hover {
+  border: 1px solid #ee4d2d;
+}
+
+.sub__product {
+  display: block;
+  line-height: 50px;
+  background-color: white;
+  border-style: none;
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.155);
+  margin: 28px auto;
+  text-decoration: none;
+  position: relative;
+}
+
+.sub__product::before {
+  position: absolute;
+  content: "";
+  width: 100vw;
+  height: 4px;
+  background-color: #ee4d2d;
+  left: -730px;
+  bottom: -70px;
+}
+
+.sub__product button {
+  width: 100px;
+  height: 50px;
+  border-style: none;
+}
+
+.sub__product button:hover {
+  background-color: rgb(243, 242, 242);
+  cursor: pointer;
+}
+
+.container__footer {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(247, 247, 247);
+  display: flex;
+  margin-top: 80px;
+  justify-content: space-between;
+}
+
+.column__1 {
+  margin-left: 167px;
+}
+
+.column__5 {
+  margin-right: 167px;
+}
+
+.container__footer-column {
+  width: 250px;
+}
+
+.container__footer-column li {
+  list-style-type: none;
+}
+
+.container__footer-column a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.647);
+  font-size: 14px;
+}
+
+.container__footer-column__header {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.column__1 a,
+.column__2 a {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.column__1 a:hover,
+.column__2 a:hover {
+  color: #ee4d2d
+}
+
+.column__3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.column__3 a {
+  display: inline-block;
+  height: 30px;
+  width: 63px;
+  margin-right: 5px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.label__1 {
+  background-image: url("https://down-vn.img.susercontent.com/file/d4bbea4570b93bfd5fc652ca82a262a8");
+}
+
+.label__2 {
+  background-image: url("https://down-vn.img.susercontent.com/file/a0a9062ebe19b45c1ae0506f16af5c16");
+}
+
+.label__3 {
+  background-image: url("https://down-vn.img.susercontent.com/file/38fd98e55806c3b2e4535c4e4a6c4c08");
+}
+
+.label__4 {
+  background-image: url("https://down-vn.img.susercontent.com/file/bc2a874caeee705449c164be385b796c");
+}
+
+.label__5 {
+  background-image: url("https://down-vn.img.susercontent.com/file/2c46b83d84111ddc32cfd3b5995d9281");
+}
+
+.label__6 {
+  background-image: url("https://down-vn.img.susercontent.com/file/5e3f0bee86058637ff23cfdf2e14ca09");
+}
+
+.label__7 {
+  background-image: url("https://down-vn.img.susercontent.com/file/9263fa8c83628f5deff55e2a90758b06");
+}
+
+.label__8 {
+  background-image: url("https://down-vn.img.susercontent.com/file/0217f1d345587aa0a300e69e2195c492");
+}
+
+.label__9 {
+  background-image: url("https://down-vn.img.susercontent.com/file/5e7282bd0f7ee0872fdb0bd1d40fbe9e");
+}
+
+.label__10 {
+  background-image: url("https://down-vn.img.susercontent.com/file/d10b0ec09f0322f9201a4f3daf378ed2");
+}
+
+.label__11 {
+  background-image: url("https://down-vn.img.susercontent.com/file/77bf96a871418fbc21cc63dd39fb5f15");
+}
+
+.label__12 {
+  background-image: url("https://down-vn.img.susercontent.com/file/59270fb2f3fbb7cbc92fca3877edde3f");
+}
+
+.label__13 {
+  background-image: url("https://down-vn.img.susercontent.com/file/957f4eec32b963115f952835c779cd2c");
+}
+
+.label__14 {
+  background-image: url("https://down-vn.img.susercontent.com/file/0d349e22ca8d4337d11c9b134cf9fe63");
+}
+
+.label__15 {
+  background-image: url("https://down-vn.img.susercontent.com/file/3900aefbf52b1c180ba66e5ec91190e5");
+}
+
+.label__16 {
+  background-image: url("https://down-vn.img.susercontent.com/file/6e3be504f08f88a15a28a9a447d94d3d");
+}
+
+.label__17 {
+  background-image: url("https://down-vn.img.susercontent.com/file/b8348201b4611fc3315b82765d35fc63");
+}
+
+.label__18 {
+  background-image: url("https://down-vn.img.susercontent.com/file/0b3014da32de48c03340a4e4154328f6");
+}
+
+.column__4 {
+  display: flex;
+  flex-direction: column;
+}
+
+.column__4 a {
+  margin: 10px 0;
+}
+
+.column__4 a:hover {
+  color: #ee4d2d
+}
+
+.column__5 a {
+  display: block;
+}
+
+.column__5-left {
+  text-align: center;
+  width: 90px;
+  height: 90px;
+  background-image: url("https://down-vn.img.susercontent.com/file/a5e589e8e118e937dc660f224b9a1472");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
